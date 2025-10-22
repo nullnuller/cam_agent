@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml>
+	<head id="HTTP404" runat="server">
+	<base href="https://www.ahpra.gov.au" target="_self" />
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+		<link href="/assets/css/screen/error-styles.css" rel="stylesheet">
+		<title>Ahpra - Server error 404: Content not found</title>
+		<style id="antiClickjack">body{display:none !important;}</style>
+        
+<APM_DO_NOT_TOUCH>
+
+<script type="text/javascript">
+(function(){
+window.EScJ=!!window.EScJ;try{(function(){(function(){var z={decrypt:function(z){try{return JSON.parse(function(z){z=z.split("l");var s="";for(var _=0;_<z.length;++_)s+=String.fromCharCode(z[_]);return s}(z))}catch(_){}}};return z={configuration:z.decrypt("123l34l97l99l116l105l118l101l34l58l34l110l111l34l44l34l100l101l98l117l103l103l105l110l103l34l58l34l110l111l34l44l34l109l111l100l117l108l101l49l34l58l34l101l110l97l98l108l101l100l34l44l34l109l111l100l117l108l101l50l34l58l34l101l110l97l98l108l101l100l34l44l34l109l111l100l117l108l101l51l34l58l34l101l110l97l98l108l101l100l34l44l34l109l111l100l117l108l101l52l34l58l34l101l110l97l98l108l101l100l34l125")}})();
+var sz=48;try{var Sz,Iz,Jz=Z(612)?0:1,Lz=Z(364)?1:0,zZ=Z(579)?0:1;for(var SZ=(Z(895),0);SZ<Iz;++SZ)Jz+=(Z(67),2),Lz+=Z(244)?2:1,zZ+=(Z(365),3);Sz=Jz+Lz+zZ;window.I_===Sz&&(window.I_=++Sz)}catch(_Z){window.I_=Sz}var lZ=!0;function S(z){var s=arguments.length,_=[],l=1;while(l<s)_[l-1]=arguments[l++]-z;return String.fromCharCode.apply(String,_)}
+function LZ(z){var s=99;!z||document[I(s,217,204,214,204,197,204,207,204,215,220,182,215,196,215,200)]&&document[I(s,217,204,214,204,197,204,207,204,215,220,182,215,196,215,200)]!==J(68616527567,s)||(lZ=!1);return lZ}function I(z){var s=arguments.length,_=[];for(var l=1;l<s;++l)_.push(arguments[l]-z);return String.fromCharCode.apply(String,_)}function oZ(){}LZ(window[oZ[J(1086806,sz)]]===oZ);LZ(typeof ie9rgb4!==I(sz,150,165,158,147,164,153,159,158));
+LZ(RegExp("\x3c")[J(1372157,sz)](function(){return"\x3c"})&!RegExp(I(sz,168,99,148))[J(1372157,sz)](function(){return"'x3'+'d';"}));
+var zs=window[I(sz,145,164,164,145,147,152,117,166,149,158,164)]||RegExp(I(sz,157,159,146,153,172,145,158,148,162,159,153,148),J(-30,sz))[S(sz,164,149,163,164)](window["\x6e\x61vi\x67a\x74\x6f\x72"]["\x75\x73e\x72A\x67\x65\x6et"]),Zs=+new Date+(Z(708)?577766:6E5),_s,is,Is,ls=window[S(sz,163,149,164,132,153,157,149,159,165,164)],Ls=zs?Z(893)?39182:3E4:Z(191)?6E3:4753;
+document[S(sz,145,148,148,117,166,149,158,164,124,153,163,164,149,158,149,162)]&&document[I(sz,145,148,148,117,166,149,158,164,124,153,163,164,149,158,149,162)](S(sz,166,153,163,153,146,153,156,153,164,169,147,152,145,158,151,149),function(z){var s=96;document[I(s,214,201,211,201,194,201,204,201,212,217,179,212,193,212,197)]&&(document[S(s,214,201,211,201,194,201,204,201,212,217,179,212,193,212,197)]===I(s,200,201,196,196,197,206)&&z[S(s,201,211,180,210,213,211,212,197,196)]?Is=!0:document[I(s,214,
+201,211,201,194,201,204,201,212,217,179,212,193,212,197)]===J(68616527570,s)&&(_s=+new Date,Is=!1,zS()))});function zS(){if(!document[S(78,191,195,179,192,199,161,179,186,179,177,194,189,192)])return!0;var z=+new Date;if(z>Zs&&(Z(995)?797461:6E5)>z-_s)return LZ(!1);var s=LZ(is&&!Is&&_s+Ls<z);_s=z;is||(is=!0,ls(function(){is=!1},Z(65)?1:0));return s}zS();var sS=[Z(781)?19085040:17795081,Z(740)?2147483647:27611931586,Z(836)?1584818666:1558153217];function J(z,s){z+=s;return z.toString(36)}
+function SS(z){var s=4;z=typeof z===I(s,119,120,118,109,114,107)?z:z[S(s,120,115,87,120,118,109,114,107)](Z(474)?36:43);var _=window[z];if(!_||!_[I(s,120,115,87,120,118,109,114,107)])return;var l=""+_;window[z]=function(z,s){is=!1;return _(z,s)};window[z][I(s,120,115,87,120,118,109,114,107)]=function(){return l}}for(var _S=(Z(782),0);_S<sS[I(sz,156,149,158,151,164,152)];++_S)SS(sS[_S]);LZ(!1!==window[I(sz,117,131,147,122)]);window.lS=window.lS||{};window.lS.Zl="08e0aa388919400081d0678ef957686eb3423d4f0a616fe0139dfdd440578b698106722eccf74cdcad886330fcc9e220ce0fbfc565879a13bc4d7bc7773946c7fd23b34ee2c8811b";
+function iS(z){var s=+new Date,_;!document[I(70,183,187,171,184,191,153,171,178,171,169,186,181,184,135,178,178)]||s>Zs&&(Z(856)?369769:6E5)>s-_s?_=LZ(!1):(_=LZ(is&&!Is&&_s+Ls<s),_s=s,is||(is=!0,ls(function(){is=!1},Z(159)?1:0)));return!(arguments[z]^_)}function Z(z){return 503>z}(function IS(s){s&&"number"!==typeof s||("number"!==typeof s&&(s=1E3),s=Math.max(s,1),setInterval(function(){IS(s-10)},s))})(!0);})();}catch(x){}finally{ie9rgb4=void(0);};function ie9rgb4(a,b){return a>>b>>0};
+
+})();
+
+</script>
+</APM_DO_NOT_TOUCH>
+
+<script type="text/javascript" src="/TSPD/08c403b005ab20008553918b2b2577d8fd609bb6ecadfea6f703cf5fb72df5fae9f2cddb8b25344e?type=9"></script>
+<script type="text/javascript">
+            if (self === top) {
+                var antiClickjack = document.getElementById("antiClickjack");
+                antiClickjack.parentNode.removeChild(antiClickjack);
+            } else {
+                top.location = self.location;
+            }
+        </script>
+		<!-- Google Tag Manager -->
+		<script>
+			(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '&gtm_auth=_qJqhRN9wzveyy8o6_oYVw&gtm_preview=env-1&gtm_cookies_win=x';f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','GTM-WBC23PL');
+		</script>
+		<!-- End Google Tag Manager -->
+	</head>
+<body>
+	<header>
+   	 <a href="https://www.ahpra.gov.au/"><img src="/assets/img/layout/ahpra-logo-e.svg" alt="Ahpra & National Boards" class="logo"/></a>
+	</header>
+	<main class="content">
+		<section class="content">
+			<h1>Page or document not found</h1>
+			<div class="message">
+				<div class="error-code">
+					<h2>
+					<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-display" viewBox="0 0 16 16" alt="Server error">
+					<path d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4q0 1 .25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75Q6 13 6 12H2s-2 0-2-2zm1.398-.855a.76.76 0 0 0-.254.302A1.5 1.5 0 0 0 1 4.01V10c0 .325.078.502.145.602q.105.156.302.254a1.5 1.5 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.76.76 0 0 0 .254-.302 1.5 1.5 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.76.76 0 0 0-.302-.254A1.5 1.5 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145"/></svg>
+					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-exclamation-diamond" viewBox="0 0 16 16" aria-hidden="true">
+					<path d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.48 1.48 0 0 1 0-2.098zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z"/>
+					<path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/></svg> 
+					404
+					</h2>
+					<p>The page or document you were expecting to view may be either no longer available, or the link to it may be incorrect or out of date.</p>
+				</div>
+				<div class="error-actions">
+					<ul>
+						<li><a href="javascript:history.back()" class="button blue"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-square" viewBox="0 0 16 16" aria-hidden="true">
+  <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+</svg> Return to the previous page</a></li>
+						<li><a href="https://www.ahpra.gov.au/search.aspx?query=" class="button blue"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16" aria-hidden="true">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+</svg> Use our website search</a></li>
+						<li><a href="https://www.ahpra.gov.au/About-Ahpra/Contact-Us.aspx" class="button dark-blue"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat-right" viewBox="0 0 16 16" aria-hidden="true">
+  <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+</svg> Report the issue</a></li>
+					</ul>
+				</div>				
+			</div>
+		</section>
+		<section class="actions">
+			<h2>Do you need to do one of the following:</h2>
+			<div class="cards">
+				<div class="card">
+					<h3><a href="https://www.ahpra.gov.au/Registration/Registers-of-Practitioners.aspx">Search registered health practitioners</a></h3>
+					<p>Look up a health practitioner to check their registration status, qualifications and suitability to care for you.</p>
+				</div>
+				<div class="card">
+					<h3><a href="https://www.ahpra.gov.au/Notifications/Concerned-about-a-health-practitioner.aspx">Raise a concern about a practitioner</a></h3>
+					<p>We can look into safety concerns raised about registered health practitioners, students and unregistered people claiming to be health practitioners.</p>
+				</div>
+				<div class="card">
+					<h3><a href="https://www.ahpra.gov.au/Login.aspx">Log on to the Practitioner portal</a></h3>
+					<p>Your Ahpra portal is your account management area and gives you access to the Ahpra parctitioner services you need, like renewing your registration.</p>
+				</div>				
+			</div>
+		</section>
+		<section class="sites">
+			<h2>Links to the National Boards websites</h2>
+			<div class="NB-CTA-links-container">
+				<ul class="grid-x">
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Aboriginal and Torres Strait Islander Health Practice Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.atsihealthpracticeboard.gov.au" target="_blank">Aboriginal and Torres Strait Islander Health Practice Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Chinese Medicine Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.chinesemedicineboard.gov.au/" target="_blank">Chinese Medicine Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Chiropractic Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.chiropracticboard.gov.au/" target="_blank">Chiropractic Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Dental Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.dentalboard.gov.au/" target="_blank">Dental Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Medical Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.medicalboard.gov.au/" target="_blank">Medical Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Medical Radiation Practice Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.medicalradiationpracticeboard.gov.au/" target="_blank">Medical Radiation Practice Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Nursing and Midwifery Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.nursingmidwiferyboard.gov.au/" target="_blank">Nursing and Midwifery Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Occupational Therapy Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.occupationaltherapyboard.gov.au/" target="_blank">Occupational Therapy Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Optometry Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.optometryboard.gov.au/" target="_blank">Optometry Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Osteopathy Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.osteopathyboard.gov.au/" target="_blank">Osteopathy Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Paramedicine Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.paramedicineboard.gov.au/" target="_blank">Paramedicine Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Pharmacy Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.pharmacyboard.gov.au/" target="_blank">Pharmacy Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Physiotherapy Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.physiotherapyboard.gov.au/" target="_blank">Physiotherapy Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Podiatry Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.podiatryboard.gov.au/" target="_blank">Podiatry Board</a>
+						</li>
+						
+						<li class="cell small-12 medium-6 large-3">
+							<a title="Psychology Board" class="button blue hollow text-bold nb-cta" rel="noreferrer noopener" href="https://www.psychologyboard.gov.au/" target="_blank">Psychology Board</a>
+						</li>
+				</ul>
+			</div>
+		</section>
+    </main>
+	<footer class="footer">
+		
+	</footer>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBC23PL&gtm_auth=_qJqhRN9wzveyy8o6_oYVw&gtm_preview=env-1&gtm_cookies_win=x"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	<!-- End Google Tag Manager (noscript) -->
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98f7ee6c7f723230',t:'MTc2MDYyMTY0MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
