@@ -60,6 +60,7 @@ cd ../..
 # 5. Copy the environment template and customise it
 cp .env.example .env
 # edit .env to point at your Ollama endpoints, judge models, and Gemini credentials
+# make sure CAM_MODEL_* values match tags from `ollama list` on this machine
 ```
 
 Populate the regulatory knowledge base (optional but recommended) via:
@@ -94,12 +95,15 @@ We support three judge modes:
 2. **Local Ollama (chat endpoint)** – if you expose `/api/chat`.
 3. **OpenAI-compatible REST** – for llama.cpp or hosted OpenAI models.
 
-In `.env` choose the block that matches your setup. Example for Ollama generate endpoint:
+In `.env` choose the block that matches your setup. Example for a local `llama.cpp` (OpenAI-compatible) server:
 
 ```ini
-JUDGE_MODE=ollama
-JUDGE_MODEL=hf.co/bartowski/google_medgemma-27b-it-GGUF:latest
-JUDGE_BASE_URL=http://localhost:11434/api/generate
+JUDGE_MODE=openai
+JUDGE_MODEL=google_medgemma-27b
+JUDGE_BASE_URL=http://localhost:8678/v1/chat/completions
+CAM_MODEL_MEDGEMMA_LARGE=google_medgemma-27b
+CAM_MODEL_MEDGEMMA_LARGE_API_MODE=openai
+CAM_MODEL_MEDGEMMA_LARGE_ENDPOINT=http://localhost:8678/v1/chat/completions
 ```
 
 Gemini judge configuration:
@@ -182,10 +186,10 @@ Features:
 
 ## GPU & Ollama Notes
 
-MedGemma 27B is memory hungry. If you see `cudaMalloc failed`:
+MedGemma 27B is memory hungry. If you keep it on Ollama and see `cudaMalloc failed`:
 
 1. **Reduce concurrency:** set `OLLAMA_NUM_PARALLEL=1` or create a Modelfile with `parameter parallel 1`.
-2. **Lower context:** set `num_ctx` to 4096 in the judge Modelfile or pass options with the API.
+2. **Lower context:** set `JUDGE_NUM_CTX=4096` in `.env` (or adjust the Modelfile `num_ctx`) to shrink GPU memory.
 3. **Split across GPUs:** `parameter num_gpu 2` ensures weights span both 24 GiB cards.
 4. **Unload other models:** `ollama ps` then `ollama stop <id>` before starting the judge.
 5. **Fallback judge:** use the 4B MedGemma (`hf.co/bartowski/google_medgemma-4b-it-GGUF:latest`) for interactive demos.

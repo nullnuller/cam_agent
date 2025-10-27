@@ -81,9 +81,16 @@ def resolve_judge_llm_config() -> JudgeLLMConfig:
 
     if mode == "openai":
         if not base_url:
-            base_url = fallback_or_empty(os.getenv("OPENAI_ENDPOINT")) or "https://api.openai.com/v1/chat/completions"
+            base_url = (
+                fallback_or_empty(os.getenv("OPENAI_ENDPOINT"))
+                or "http://localhost:8678/v1/chat/completions"
+            )
         if not model:
-            model = "gpt-4o-mini"
+            model = (
+                fallback_or_empty(os.getenv("JUDGE_MODEL"))
+                or fallback_or_empty(os.getenv("CAM_MODEL_MEDGEMMA_LARGE"))
+                or "google_medgemma-27b"
+            )
         auth_token = (
             os.getenv("JUDGE_API_KEY")
             or os.getenv("OPENAI_API_KEY")
@@ -101,7 +108,7 @@ def resolve_judge_llm_config() -> JudgeLLMConfig:
                 fallback_or_empty(os.getenv("JUDGE_MODEL"))
                 or fallback_or_empty(os.getenv("OLLAMA_JUDGE_MODEL"))
                 or fallback_or_empty(os.getenv("CAM_MODEL_MEDGEMMA_LARGE"))
-                or "alibayram/medgemma:27b"
+                or "google_medgemma-27b"
             )
         auth_token = (
             os.getenv("JUDGE_BEARER")
@@ -119,7 +126,7 @@ def resolve_judge_llm_config() -> JudgeLLMConfig:
             model = (
                 fallback_or_empty(os.getenv("OLLAMA_JUDGE_MODEL"))
                 or fallback_or_empty(os.getenv("CAM_MODEL_MEDGEMMA_LARGE"))
-                or "alibayram/medgemma:27b"
+                or "google_medgemma-27b"
             )
         auth_token = (
             os.getenv("JUDGE_BEARER")
@@ -449,6 +456,25 @@ def build_default_judges(
         print(
             f"[judge] mode={cfg.mode} endpoint={cfg.endpoint} model={cfg.model} auth={auth_status}"
         )
+
+        def _int_from_env(*names: str, default: int) -> int:
+            for name in names:
+                raw = os.getenv(name)
+                if not raw:
+                    continue
+                try:
+                    return int(raw)
+                except ValueError:
+                    print(f"[judge] Warning: invalid integer for {name!r}: {raw!r}. Using {default}.")
+            return default
+
+        judge_num_ctx = _int_from_env(
+            "JUDGE_NUM_CTX",
+            "OLLAMA_JUDGE_NUM_CTX",
+            "CAM_JUDGE_NUM_CTX",
+            default=8192,
+        )
+
         judges.append(
             OllamaJudge(
                 model=cfg.model,
@@ -456,6 +482,7 @@ def build_default_judges(
                 endpoint=cfg.endpoint,
                 api_mode=cfg.mode,
                 auth_token=cfg.auth_token,
+                num_ctx=judge_num_ctx,
             )
         )
     if enable_gemini_judge:

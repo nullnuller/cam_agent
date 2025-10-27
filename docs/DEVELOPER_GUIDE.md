@@ -54,9 +54,10 @@ This guide outlines how to set up, extend, and contribute to the CAM framework.
    ```
    Then point OpenAI SDKs to `http://127.0.0.1:8000/v1`.
    > Requires `fastapi` and `uvicorn` (`pip install fastapi uvicorn`).
-4. Update `.env` (copy from `.env.example`) with model names matching `ollama list` output and Gemini config (e.g., `GEMINI_MODEL=models/gemini-2.0-flash`, `GEMINI_RPM=10`).
+4. Update `.env` (copy from `.env.example`) with model names matching the `ollama list` output on *your* machine and Gemini config (e.g., `GEMINI_MODEL=models/gemini-2.0-flash`, `GEMINI_RPM=10`).
    - To route generation through Ollama's chat endpoint (recommended), set `LLM_API_MODE=ollama_chat` (default in `.env.example`). For an OpenAI-compatible endpoint, set `LLM_API_MODE=openai` and optionally `OPENAI_ENDPOINT` / `OPENAI_API_KEY`.
    - Choose the judge backend by selecting the appropriate `JUDGE_MODE` block (Ollama, Ollama chat, or OpenAI-compatible) and setting `JUDGE_BASE_URL` / auth variables accordingly.
+   - If your GPU runs out of memory with MedGemma 27B, set `JUDGE_NUM_CTX=4096` (or similar) in `.env` to shrink the context window before falling back to smaller models.
 3. Execute tests before committing:
    ```bash
    pytest
@@ -116,13 +117,16 @@ This guide outlines how to set up, extend, and contribute to the CAM framework.
    - `/reveal` accepts POST payloads and appends JSONL entries to the reveal log for privacy auditing.
    - The timeline renders redacted text by default; clicking "Reveal full response" logs the action before showing raw content when available.
    - `/console/options` advertises available base scenarios and judge providers; `/console` runs a live query (requires RAG store + any selected judge credentials).
-     - **Ollama judge** uses `JUDGE_MODE`/`JUDGE_MODEL` (`OLLAMA_*` overrides honoured).
+     - **llama.cpp judge** runs via `JUDGE_MODE=openai` with endpoints like `http://localhost:8678/v1/chat/completions`.
+     - **Ollama judge** uses `JUDGE_MODE=ollama`/`ollama_chat` (`OLLAMA_*` overrides honoured).
      - **Gemini judge** needs `GEMINI_API_KEY` (and optional `GEMINI_MODEL` / `GEMINI_RPM`).
-   - Ensure your `.env` aligns base model names with the Ollama installation:
+   - Ensure your `.env` aligns base model names with the runtime:
      ```env
      CAM_MODEL_GEMMA_BASE=gemma3-4B-128k:latest
      CAM_MODEL_MEDGEMMA_SMALL=hf.co/bartowski/google_medgemma-4b-it-GGUF:latest
-     CAM_MODEL_MEDGEMMA_LARGE=hf.co/bartowski/google_medgemma-27b-it-GGUF:latest
+     CAM_MODEL_MEDGEMMA_LARGE=google_medgemma-27b
+     CAM_MODEL_MEDGEMMA_LARGE_API_MODE=openai
+     CAM_MODEL_MEDGEMMA_LARGE_ENDPOINT=http://localhost:8678/v1/chat/completions
      ```
 
 ## 7. Checklist Before PR

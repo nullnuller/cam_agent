@@ -244,13 +244,23 @@ class LLMClient:
         if seed is not None:
             payload["seed"] = int(seed)
 
-        response = requests.post(
-            self.endpoint,
-            json=payload,
-            headers=headers,
-            timeout=timeout,
-        )
-        response.raise_for_status()
+        try:
+            response = requests.post(
+                self.endpoint,
+                json=payload,
+                headers=headers,
+                timeout=timeout,
+            )
+            response.raise_for_status()
+        except requests.HTTPError as exc:
+            body = (response.text or "").strip()
+            preview = body[:1000]
+            if len(body) > len(preview):
+                preview += "…"
+            raise RuntimeError(
+                f"OpenAI-compatible request failed for model '{model}' at {self.endpoint}: {preview}"
+            ) from exc
+
         data = response.json()
         choices = data.get("choices") or []
         if not choices:

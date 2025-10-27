@@ -45,7 +45,7 @@ const demoEvents: TimelineEvent<LLMResponsePayload | JudgeVerdictPayload>[] = [
     payload: {
       source: {
         model_id: 'gemma3-4B-128k',
-        provider: 'ollama',
+        provider: 'llama.cpp',
         mode: 'rag',
         metadata: {},
       },
@@ -64,7 +64,7 @@ const demoEvents: TimelineEvent<LLMResponsePayload | JudgeVerdictPayload>[] = [
     created_at: new Date().toISOString(),
     payload: {
       source: {
-        model_id: 'hf.co/bartowski/google_medgemma-27b-it-GGUF',
+        model_id: 'google_medgemma-27b',
         provider: 'ollama',
         mode: 'judge',
         metadata: {},

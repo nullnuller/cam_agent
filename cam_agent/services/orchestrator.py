@@ -4,10 +4,10 @@ Scenario executor orchestrating retrieval + LLM calls.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 import os
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional
+from typing import Dict, List, Optional
 
 from cam_agent.config.models import ModelConfig
 from cam_agent.services.formatter import (
@@ -73,6 +73,17 @@ class ScenarioExecutor:
                 min_sim=self.min_sim,
             )
             if retrieval_result.hits:
+                filtered_hits = self._truncate_hits_for_budget(request, retrieval_result.hits)
+                if len(filtered_hits) < len(retrieval_result.hits):
+                    scenario_label = request.extra.get("scenario_id") if request.extra else None
+                    label = scenario_label or self.config.name
+                    print(
+                        f"[scenario {label}] trimming retrieval context "
+                        f"from {len(retrieval_result.hits)} to {len(filtered_hits)} hits "
+                        f"to respect context budget.",
+                        flush=True,
+                    )
+                retrieval_result.hits = filtered_hits
                 hits_context = prepare_context(retrieval_result.hits)
 
         prompt = request.question
@@ -122,4 +133,37 @@ class ScenarioExecutor:
             retrieved_hits=retrieval_result.hits if retrieval_result else [],
             metadata={"scores": retrieval_result.scores if retrieval_result else []},
         )
+
+    def _truncate_hits_for_budget(
+        self,
+        request: QueryRequest,
+        hits: List[Dict[str, object]],
+    ) -> List[Dict[str, object]]:
+        """Best-effort guard to keep prompt within the model context budget."""
+        if not hits:
+            return []
+
+        # Approximate char budget from context window (fallback 8192 tokens, ~6 chars/token)
+        num_ctx = self.config.num_ctx or 8192
+        max_chars = max(4000, int(num_ctx) * 6)
+        # Reserve headroom for instructions + question
+        reserved = 2000 + len(request.question)
+        available = max(2000, max_chars - reserved)
+
+        pruned: List[Dict[str, object]] = []
+        consumed = 0
+        for hit in hits:
+            passage = str(hit.get("text") or "").strip()
+            addition = len(passage)
+            if not passage:
+                pruned.append(hit)
+                continue
+            if consumed + addition > available and pruned:
+                break
+            pruned.append(hit)
+            consumed += addition
+            if consumed >= available:
+                break
+
+        return pruned if pruned else hits[:1]
 __all__ = ["ScenarioExecutor", "FALLBACK_MESSAGE"]
