@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 from cam_agent.compliance.rules import DISCLAIMER_HINT, evaluate_compliance
 from cam_agent.config.models import ModelConfig, SCENARIOS
@@ -18,6 +18,24 @@ from cam_agent.storage.audit import JsonlAuditLogger
 BLOCK_MESSAGE = (
     "We’re unable to share the model’s response because it may conflict with safety or regulatory guidance. "
     "A compliance review has been logged."
+)
+
+CRISIS_TEMPLATE = (
+    "If you or someone else is in immediate danger, contact emergency services (000 within Australia). "
+    "You can also call Lifeline on 13 11 14 or Beyond Blue on 1300 22 4636 for urgent support. "
+    "Please seek immediate professional help."
+)
+
+CRISIS_KEYWORDS = (
+    "self-harm",
+    "suicidal",
+    "kill myself",
+    "hurt myself",
+    "emergency",
+    "crisis",
+    "not feeling like myself",
+    "depression",
+    "panic attack",
 )
 
 
@@ -55,11 +73,18 @@ class CAMAgent:
         self,
         scenario_id: str,
         request: QueryRequest,
+        *,
+        metadata: Optional[Dict[str, Any]] = None,
     ) -> CAMResponse:
         executor = self.get_executor(scenario_id)
         model_output = executor.execute(request)
         decision = evaluate_compliance(request, model_output)
-        final_text = self._apply_decision(model_output, decision.issues, decision.action)
+        final_text = self._apply_decision(
+            request,
+            model_output,
+            decision.issues,
+            decision.action,
+        )
 
         response = CAMResponse(
             final_text=final_text,
@@ -67,11 +92,15 @@ class CAMAgent:
             issues=decision.issues,
             raw_output=model_output,
         )
-        self.audit_logger.log(request, response, metadata={"scenario_id": scenario_id})
+        combined_metadata: Dict[str, Any] = {"scenario_id": scenario_id}
+        if metadata:
+            combined_metadata.update(metadata)
+        self.audit_logger.log(request, response, metadata=combined_metadata)
         return response
 
     def _apply_decision(
         self,
+        request: QueryRequest,
         model_output: ModelOutput,
         issues: list[ComplianceIssue],
         action: str,
@@ -79,7 +108,12 @@ class CAMAgent:
         if action == "block":
             return BLOCK_MESSAGE
 
-        text = model_output.text
+        text = model_output.text.strip()
+        needs_crisis = self._needs_crisis_template(request.question, text)
+
+        if needs_crisis:
+            text = self._inject_crisis_guidance(text)
+
         has_disclaimer_issue = any(issue.rule_id == "compliance.disclaimer_missing" for issue in issues)
 
         if has_disclaimer_issue:
@@ -90,6 +124,18 @@ class CAMAgent:
             text = f"{warnings}\n\n{text}"
 
         return text.strip()
+
+    def _needs_crisis_template(self, question: str, text: str) -> bool:
+        combined = f"{question}\n{text}".lower()
+        if any(marker in combined for marker in ("lifeline", "000", "13 11 14", "beyond blue", "seek immediate professional help")):
+            return False
+        question_lower = question.lower()
+        return any(keyword in question_lower for keyword in CRISIS_KEYWORDS)
+
+    def _inject_crisis_guidance(self, text: str) -> str:
+        if CRISIS_TEMPLATE.lower() in text.lower():
+            return text
+        return f"{CRISIS_TEMPLATE}\n\n{text}".strip()
 
 
 __all__ = ["CAMAgent", "BLOCK_MESSAGE"]

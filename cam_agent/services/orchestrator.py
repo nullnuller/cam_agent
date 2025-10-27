@@ -5,11 +5,17 @@ Scenario executor orchestrating retrieval + LLM calls.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import os
 from pathlib import Path
 from typing import Optional
 
 from cam_agent.config.models import ModelConfig
-from cam_agent.services.formatter import RetrievalContext, enrich_citations, prepare_context
+from cam_agent.services.formatter import (
+    RetrievalContext,
+    enrich_citations,
+    prepare_context,
+    sanitize_legal_references,
+)
 from cam_agent.services.models import LLMClient
 from cam_agent.services.retrieval import RetrievalManager, RetrievalResult
 from cam_agent.services.types import ModelOutput, QueryRequest
@@ -17,7 +23,8 @@ from cam_agent.utils.rag import build_prompt
 
 FALLBACK_MESSAGE = (
     "I’m not confident this question is covered by the documents I have. "
-    "Please add a relevant PDF or broaden the context and try again."
+    "Please add a relevant PDF or broaden the context and try again. "
+    "If this relates to personal wellbeing or safety, contact a qualified health professional or emergency services immediately."
 )
 
 
@@ -33,7 +40,18 @@ class ScenarioExecutor:
     _retrieval: Optional[RetrievalManager] = field(init=False, default=None)
 
     def __post_init__(self) -> None:
-        self.llm_client = self.llm_client or LLMClient()
+        if self.llm_client is None:
+            client_kwargs = {}
+            if self.config.api_mode:
+                client_kwargs["api_mode"] = self.config.api_mode
+            if self.config.endpoint:
+                client_kwargs["endpoint"] = self.config.endpoint
+            auth_token = None
+            if self.config.auth_env_var:
+                auth_token = os.getenv(self.config.auth_env_var)
+            if auth_token:
+                client_kwargs["auth_token"] = auth_token
+            self.llm_client = LLMClient(**client_kwargs)
         if self.config.use_rag:
             if not self.store_dir:
                 raise ValueError("store_dir is required for RAG-enabled scenarios.")
@@ -93,6 +111,7 @@ class ScenarioExecutor:
         answer_text = llm_response.text
         if hits_context:
             answer_text = enrich_citations(answer_text, hits_context)
+        answer_text = sanitize_legal_references(answer_text, retrieval_context_block)
 
         return ModelOutput(
             text=answer_text,
